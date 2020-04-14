@@ -151,3 +151,7 @@ Thumbs.db
 
 # config file
 config.py
+
+# api keys
+eric_keys.py
+zawar_keys.py

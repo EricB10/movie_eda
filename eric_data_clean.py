@@ -4,9 +4,14 @@ import json
 import requests
 import ast
 
-from eric_keys import eric_omdb_key, eric_tmdb_key, eric_tmdb_token
-from eric_test import *
-from functions import *
+
+
+# Write Clean DF
+df.to_csv('clean_df.csv')
+
+# Open Clean DF
+df = pd.read_csv('clean_df.csv', index_col='id').sort_index()
+
 
 
 # Open TMDB Details DF
@@ -38,8 +43,13 @@ df.drop('release_date', axis=1, inplace=True)
 old_filt = df['year'] > 1990
 df = df.loc[old_filt]
 
-# Write Clean DF
-df.to_csv('clean_df.csv')
 
-# Open Clean DF
-df = pd.read_csv('clean_df.csv', index_col='id').sort_index()
+
+# Merge in revenue data
+df1 = pd.read_csv('clean_df.csv', index_col='imdb_id')
+df2 = pd.read_csv('cumulative_revenue.csv', index_col='imdb_id')
+df = pd.merge(df, df2, on='imdb_id')
+
+# Clean up revenue, remove cumulative_revenue
+df['revenue'] = df['cumulative_revenue'].str.replace(',', '').str.replace('$','')
+df.drop('cumulative_revenue', axis=1, inplace=True)

@@ -20,18 +20,26 @@ df_det.keys()
 # Open TMDB Top Rated DF
 df_top = pd.read_csv('TMDB_toprated.csv', index_col='id').sort_index()
 
-# Drop Adult (100% False)
+# Drop Adult column (100% False)
 df_top.drop('adult', axis=1, inplace=True)
 
 # Merge DFs
-combined_df = pd.merge(df_det, df_top, on='id')
+df = pd.merge(df_det, df_top, on='id')
 
 # Drop Non-English
-lan_filt = combined_df['original_language'] != 'en'
-combined_df = combined_df.loc[lan_filt]
+lan_filt = df['original_language'] != 'en'
+df = df.loc[lan_filt]
 
-# Write Merged DF
-combined_df.to_csv('clean_df.csv')
+# Get only year from release date
+df['year'] = df['release_date'].apply(lambda x: int(x[0:4]))
+df.drop('release_date', axis=1, inplace=True)
+
+# Drop movies before 1990
+old_filt = df['year'] > 1990
+df = df.loc[old_filt]
+
+# Write Clean DF
+df.to_csv('clean_df.csv')
 
 # Open Clean DF
 df = pd.read_csv('clean_df.csv', index_col='id').sort_index()

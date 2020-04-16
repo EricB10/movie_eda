@@ -53,3 +53,18 @@ df = pd.merge(df, df2, on='imdb_id')
 # Clean up revenue, remove cumulative_revenue
 df['revenue'] = df['cumulative_revenue'].str.replace(',', '').str.replace('$','')
 df.drop('cumulative_revenue', axis=1, inplace=True)
+
+
+
+# Create decades columns
+filt90_1 = df['year'] >= 1990
+filt90_2 = df['year'] < 2000
+df['90s']=np.where(filt90_1 & filt90_2,1,0)
+
+filt00_1 = df['year'] >= 2000
+filt00_2 = df['year'] < 2010
+df['00s']=np.where(filt00_1 & filt00_2,1,0)
+
+filt10_1 = df['year'] >= 2010
+filt10_2 = df['year'] < 2020
+df['10s']=np.where(filt10_1 & filt10_2,1,0)

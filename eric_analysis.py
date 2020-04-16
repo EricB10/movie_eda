@@ -61,6 +61,70 @@ for decade in ['90s', '00s', '10s']:
         filt2 = df['original_language'] == key
         top_five_lang[key][f'{decade}_median_popularity'] = round(
             df.loc[filt1].loc[filt2]['popularity'].median(), 1)
+
+# Add mean budget by decade
+for decade in ['90s', '00s', '10s']:
+    for key, value in top_five_lang.items():
+        filt1 = df[decade] == 1
+        filt2 = df['original_language'] == key
+        top_five_lang[key][f'{decade}_mean_budget'] = int(round(
+            df.loc[filt1].loc[filt2]['budget'].mean()))
+        
+# Add median budget by decade
+for decade in ['90s', '00s', '10s']:
+    for key, value in top_five_lang.items():
+        filt1 = df[decade] == 1
+        filt2 = df['original_language'] == key
+        top_five_lang[key][f'{decade}_median_budget'] = int(round(
+            df.loc[filt1].loc[filt2]['budget'].median()))
+        
+# Add mean revenue by decade
+for decade in ['90s', '00s', '10s']:
+    for key, value in top_five_lang.items():
+        filt1 = df[decade] == 1
+        filt2 = df['original_language'] == key
+        top_five_lang[key][f'{decade}_mean_revenue'] = int(round(
+            df.loc[filt1].loc[filt2]['revenue'].mean()))
+        
+# Add median revenue by decade
+for decade in ['90s', '00s', '10s']:
+    for key, value in top_five_lang.items():
+        filt1 = df[decade] == 1
+        filt2 = df['original_language'] == key
+        top_five_lang[key][f'{decade}_median_revenue'] = int(round(
+            df.loc[filt1].loc[filt2]['revenue'].median()))
+        
+# Add mean profit by decade
+for decade in ['90s', '00s', '10s']:
+    for key, value in top_five_lang.items():
+        filt1 = df[decade] == 1
+        filt2 = df['original_language'] == key
+        top_five_lang[key][f'{decade}_mean_profit'] = int(round(
+            df.loc[filt1].loc[filt2]['profit'].mean()))
+        
+# Add median profit by decade
+for decade in ['90s', '00s', '10s']:
+    for key, value in top_five_lang.items():
+        filt1 = df[decade] == 1
+        filt2 = df['original_language'] == key
+        top_five_lang[key][f'{decade}_median_profit'] = int(round(
+            df.loc[filt1].loc[filt2]['profit'].median()))
+        
+# Add mean profit margin by decade
+for decade in ['90s', '00s', '10s']:
+    for key, value in top_five_lang.items():
+        filt1 = df[decade] == 1
+        filt2 = df['original_language'] == key
+        top_five_lang[key][f'{decade}_mean_profit_margin'] = int(round(
+            df.loc[filt1].loc[filt2]['profit_margin'].mean()))
+        
+# Add median profit margin by decade
+for decade in ['90s', '00s', '10s']:
+    for key, value in top_five_lang.items():
+        filt1 = df[decade] == 1
+        filt2 = df['original_language'] == key
+        top_five_lang[key][f'{decade}_median_profit_margin'] = int(round(
+            df.loc[filt1].loc[filt2]['profit_margin'].median()))
         
 
     

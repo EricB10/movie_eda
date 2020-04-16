@@ -56,6 +56,43 @@ df['budget'].replace(0, np.nan, inplace=True)
 # Delete outlier budget data < $100
 df['budget']=np.where(df['budget']<100,np.nan,df['budget'])
 
+# Spell out languages
+language_dict = {
+    'fr':'French',
+    'it':'Italian',
+    'ja':'Japanese',
+    'es':'Spanish',
+    'de':'German',
+    'ko':'Korean',
+    'cn':'Chinese',
+    'pt':'Portuguese',
+    'zh':'Chinese',
+    'da':'Danish',
+    'sv':'Swedish',
+    'ru':'Russian',
+    'hi':'Hindi',
+    'no':'Norwegian',
+    'fa':'Farsi',
+    'nl':'Dutch',
+    'th':'Thai',
+    'id':'Indonesian',
+    'tr':'Turkish',
+    'pl':'Polish',
+    'sr':'Serbian',
+    'hu':'Hungarian',
+    'te':'Telugu',
+    'ar':'Arabic',
+    'el':'Greek',
+    'fi':'Finnish',
+    'et':'Estonian',
+    'la':'Latin',
+    'bs':'Bosnian',
+    'ro':'Romanian',
+    'nb':'Norwegian',
+    'eu':'Basque'    
+}
+df['original_language'] = df['original_language'].map(language_dict)
+
 
 
 ##### Merge Scraped Revenue DF #####
@@ -87,3 +124,8 @@ df['00s']=np.where(filt00_1 & filt00_2,1,0)
 filt10_1 = df['year'] >= 2010
 filt10_2 = df['year'] < 2020
 df['10s']=np.where(filt10_1 & filt10_2,1,0)
+
+# Add profit, profit margin columns
+df['profit'] = df['revenue'] - df['budget']
+df['profit_margin'] = 100 * df['profit'] / df['revenue']
+df['profit_margin'] = round(df['profit_margin'], 1)

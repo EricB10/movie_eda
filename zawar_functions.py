@@ -43,3 +43,38 @@ def parse_movie(mov_data):
     ]
     return parsed_data
 
+
+language_dict = {
+    'fr':'French',
+    'it':'Italian',
+    'ja':'Japanese',
+    'es':'Spanish',
+    'de':'German',
+    'ko':'Korean',
+    'cn':'Chinese',
+    'pt':'Portuguese',
+    'zh':'Chinese',
+    'da':'Danish',
+    'sv':'Swedish',
+    'ru':'Russian',
+    'hi':'Hindi',
+    'no':'Norwegian',
+    'fa':'Farsi',
+    'nl':'Dutch',
+    'th':'Thai',
+    'id':'Indonesian',
+    'tr':'Turkish',
+    'pl':'Polish',
+    'sr':'Serbian',
+    'hu':'Hungarian',
+    'te':'Telugu',
+    'ar':'Arabic',
+    'el':'Greek',
+    'fi':'Finnish',
+    'et':'Estonian',
+    'la':'Latin',
+    'bs':'Bosnian',
+    'ro':'Romanian',
+    'nb':'Norwegian',
+    'eu':'Basque'    
+}

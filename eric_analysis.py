@@ -4,8 +4,12 @@ import json
 import requests
 import ast
 
+# Read CSV to DF
 df = pd.read_csv('clean_df.csv', index_col='id').sort_index()
 
+
+
+##### Top Five Languages #####
 
 # Create list of top languages by num of movies
 language_count = dict(df['original_language'].value_counts())
@@ -25,6 +29,40 @@ for key, value in top_five_lang.items():
 for key, value in top_five_lang.items():
     top_five_lang[key]['median_vote_count'] = int(round(
         df.groupby('original_language')['vote_count'].median().loc[key]))
+    
+# Add mean vote by decade
+for decade in ['90s', '00s', '10s']:
+    for key, value in top_five_lang.items():
+        filt1 = df[decade] == 1
+        filt2 = df['original_language'] == key
+        top_five_lang[key][f'{decade}_mean_vote'] = round(
+            df.loc[filt1].loc[filt2]['avg_vote'].mean(), 1)
+        
+# Add median vote by decade
+for decade in ['90s', '00s', '10s']:
+    for key, value in top_five_lang.items():
+        filt1 = df[decade] == 1
+        filt2 = df['original_language'] == key
+        top_five_lang[key][f'{decade}_median_vote'] = round(
+            df.loc[filt1].loc[filt2]['avg_vote'].median(), 1)
+        
+# Add mean popularity by decade
+for decade in ['90s', '00s', '10s']:
+    for key, value in top_five_lang.items():
+        filt1 = df[decade] == 1
+        filt2 = df['original_language'] == key
+        top_five_lang[key][f'{decade}_mean_popularity'] = round(
+            df.loc[filt1].loc[filt2]['popularity'].mean(), 1)
+        
+# Add median popularity by decade
+for decade in ['90s', '00s', '10s']:
+    for key, value in top_five_lang.items():
+        filt1 = df[decade] == 1
+        filt2 = df['original_language'] == key
+        top_five_lang[key][f'{decade}_median_popularity'] = round(
+            df.loc[filt1].loc[filt2]['popularity'].median(), 1)
+        
+
     
 
     

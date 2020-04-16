@@ -6,23 +6,30 @@ import ast
 
 
 
-# Write Clean DF
-df.to_csv('clean_df.csv')
+##### Primary DF #####
 
-# Open Clean DF
+# Read CSV to DF
 df = pd.read_csv('clean_df.csv', index_col='id').sort_index()
 
+# Write DF to CSV
+df.to_csv('clean_df.csv')
+
+# Fix genre, country formatting ***MUST BE RUN IN NOTEBOOK***
+df['genre_names']=df['genre_names'].apply(lambda x: ast.literal_eval(x)) # Run in notebook
+df['countries']=df['countries'].apply(lambda x: ast.literal_eval(x)) # Run in notebook
 
 
-# Open TMDB Details DF
+
+##### Initial DF Clean, Merge #####
+
+# Read TMDB Details DF
 df_det = pd.read_csv('TMDB_movie_details.csv', index_col='id').sort_index()
 
-# Reformat TMDB Details Contries
-df_det['countries']=df_det['production_countries'].apply(lambda x: ast.literal_eval(x))
+# Fix countries column
+df_det['countries']=df_det['production_countries']
 df_det.drop('production_countries', axis=1, inplace=True)
-df_det.keys()
 
-# Open TMDB Top Rated DF
+# Read TMDB Top Rated DF
 df_top = pd.read_csv('TMDB_toprated.csv', index_col='id').sort_index()
 
 # Drop Adult column (100% False)
@@ -43,7 +50,15 @@ df.drop('release_date', axis=1, inplace=True)
 old_filt = df['year'] > 1990
 df = df.loc[old_filt]
 
+# Replace budget 0 values with NaN
+df['budget'].replace(0, np.nan, inplace=True)
 
+# Delete outlier budget data < $100
+df['budget']=np.where(df['budget']<100,np.nan,df['budget'])
+
+
+
+##### Merge Scraped Revenue DF #####
 
 # Merge in revenue data
 df1 = pd.read_csv('clean_df.csv', index_col='imdb_id')
@@ -56,15 +71,19 @@ df.drop('cumulative_revenue', axis=1, inplace=True)
 
 
 
-# Create decades columns
+##### Create More Columns #####
+
+# Create 90s column
 filt90_1 = df['year'] >= 1990
 filt90_2 = df['year'] < 2000
 df['90s']=np.where(filt90_1 & filt90_2,1,0)
 
+# Create 00s column
 filt00_1 = df['year'] >= 2000
 filt00_2 = df['year'] < 2010
 df['00s']=np.where(filt00_1 & filt00_2,1,0)
 
+# Create 10s column
 filt10_1 = df['year'] >= 2010
 filt10_2 = df['year'] < 2020
 df['10s']=np.where(filt10_1 & filt10_2,1,0)

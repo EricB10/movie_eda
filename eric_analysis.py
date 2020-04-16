@@ -4,8 +4,57 @@ import json
 import requests
 import ast
 
-# Read CSV to DF
+# Read clean csv to df
 df = pd.read_csv('clean_df.csv', index_col='id').sort_index()
+df['genre_names']=df['genre_names'].apply(lambda x: ast.literal_eval(x))
+df['countries']=df['countries'].apply(lambda x: ast.literal_eval(x))
+
+# Create language count df for plotting
+lang_count_df = pd.DataFrame(language_count, columns=['language', 'count'])
+lang_count_df.set_index('language', inplace=True)
+
+# Create language df for plotting
+top_five_df = pd.DataFrame.from_dict(top_five_lang,orient='index')
+
+
+
+##### Data Visualizations #####
+
+# Plot number of popular movies by language
+lang_count_df.plot(kind='bar', legend=False, figsize=(10,6))
+plt.title('Number of Popular non-English\nMovies by Language')
+plt.xlabel(None)
+plt.ylabel('Num of Movies')
+plt.show()
+
+# Plot median rating by language for top 5 languages
+top_five_df['median_avg_vote'].plot(kind='bar', figsize=(10,6))
+plt.title('Median Movie Rating\nTop Five Languages')
+plt.xlabel(None)
+plt.ylabel('Med Rating (Out of 10)')
+plt.show()
+
+# Plot median profit per decade for top 5 languages
+for language in top_five_lang:
+    plots[language] = [top_five_lang[language]['90s_median_profit']/1000000,
+                       top_five_lang[language]['00s_median_profit']/1000000,
+                       top_five_lang[language]['10s_median_profit']/1000000]
+plots=pd.DataFrame(plots, index=['1990s', '2000s', '2010s'])
+plots.plot(figsize=(10,6))
+plt.title('Median Profit per Decade\nby Language')
+plt.ylabel('Med Profit (Millions)')
+plt.show()
+
+# Plot median profit margin per decade for top 5 languages
+for language in top_five_lang:
+    plots[language] = [top_five_lang[language]['90s_median_profit_margin'],
+                       top_five_lang[language]['00s_median_profit_margin'],
+                       top_five_lang[language]['10s_median_profit_margin']]
+plots=pd.DataFrame(plots, index=['1990s', '2000s', '2010s'])
+plots.plot(figsize=(10,6))
+plt.title('Median Profit Margin per\nDecade by Language')
+plt.ylabel('Med Profit Margin')
+plt.show()
 
 
 
@@ -29,6 +78,16 @@ for key, value in top_five_lang.items():
 for key, value in top_five_lang.items():
     top_five_lang[key]['median_vote_count'] = int(round(
         df.groupby('original_language')['vote_count'].median().loc[key]))
+    
+# Add mean rating
+for key, value in top_five_lang.items():
+    top_five_lang[key]['mean_avg_vote'] = round(
+        df.groupby('original_language')['avg_vote'].mean().loc[key], 1)
+    
+# Add median rating
+for key, value in top_five_lang.items():
+    top_five_lang[key]['median_avg_vote'] = round(
+        df.groupby('original_language')['avg_vote'].median().loc[key], 1)
     
 # Add mean vote by decade
 for decade in ['90s', '00s', '10s']:

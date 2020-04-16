@@ -56,6 +56,14 @@ df['budget'].replace(0, np.nan, inplace=True)
 # Delete outlier budget data < $100
 df['budget']=np.where(df['budget']<100,np.nan,df['budget'])
 
+# Delete revenue outliers
+filt_rev = df['revenue'] < 10000
+df['revenue'] = np.where(filt_rev, np.nan, df['revenue'])
+
+# Delete budget outliers
+filt_bgt = df['budget'] < 10000
+df['budget'] = np.where(filt_bgt, np.nan, df['budget'])
+
 # Spell out languages
 language_dict = {
     'fr':'French',

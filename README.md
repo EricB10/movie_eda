@@ -22,7 +22,6 @@
 ##### and most profitable of non-English movies.
 ##### Sci-Fi and Action genres have the highest revenue and profits
 ##### and have been trending upward over the last 30 years.
-##### scripts used for analysis (most copied into primary notebook)
 
 
 
@@ -30,16 +29,13 @@
 
 ##### Presentation:
 Movie EDA.pdf
+##### data visualizations as png:
+graphs (folder)
 
 ##### primary notebook containing data analysis & visualizations:
 PRIMARY_notebook.ipynb
 ##### primary data set:
 clean_df.csv
-
-##### slideshow presentation:
-Movie Eda.pdf
-##### data visualizations as png:
-graphs (folder)
 
 ##### scripts used for cleaning and analysis:
 resources.py

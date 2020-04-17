@@ -18,6 +18,9 @@
 
 ### Files:
 
+##### Presentation:
+Movie EDA.pdf
+
 ##### primary notebook containing data analysis & visualizations:
 PRIMARY_notebook.ipynb
 ##### primary data set:

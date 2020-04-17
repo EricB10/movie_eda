@@ -16,6 +16,16 @@
 
 
 
+### Conclusions:
+
+##### Chinese and Japanese movies are among the highest rated
+##### and most profitable of non-English movies.
+##### Sci-Fi and Action genres have the highest revenue and profits
+##### and have been trending upward over the last 30 years.
+##### scripts used for analysis (most copied into primary notebook)
+
+
+
 ### Files:
 
 ##### Presentation:
@@ -26,12 +36,21 @@ PRIMARY_notebook.ipynb
 ##### primary data set:
 clean_df.csv
 
-##### 1/3 notebooks used for building, testing:
-eric_notebook.ipynb
-##### 2/3 notebooks used for building, testing:
+##### slideshow presentation:
+Movie Eda.pdf
+##### data visualizations as png:
+graphs (folder)
+
+##### scripts used for cleaning and analysis:
+resources.py
+
+##### 1/2 notebooks used for building, testing:
 zawar_analysis.ipynb
-##### 3/3 notebooks used for building, testing:
+##### 2/2 notebooks used for building, testing:
 zawar_data_collection.ipynb
+
+##### functions used to collect and clean data:
+zawar_functions.py
 
 ##### csv of initial popular movie data from TMDb API:
 TMDB_toprated.csv
@@ -39,27 +58,3 @@ TMDB_toprated.csv
 TMDB_movie_details.csv
 ##### csv containing revenue data scraped from IMDb:
 cumulative_revenue.csv
-
-##### functions used to collect and clean data:
-zawar_functions.py
-
-##### scripts used to collect data:
-eric_data_collection.py
-##### scripts used to clean data:
-eric_data_clean.py
-<<<<<<< HEAD
-##### scripts used for analysis (most copied into primary notebook):
-eric_analysis.py
-
-
-
-### Conclusions:
-
-##### Chinese and Japanese movies are among the highest rated
-##### and most profitable of non-English movies.
-##### Sci-Fi and Action genres have the highest revenue and profits
-##### and have been trending upward over the last 30 years.
-=======
-##### scripts used for analysis (most copied into primary notebook)
-eric_analysis.py
->>>>>>> b24170968680ade4f3b92e508a95be780444a043

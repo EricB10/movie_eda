@@ -18,6 +18,9 @@
 
 ### Files:
 
+##### Presentation:
+Movie EDA.pdf
+
 ##### primary notebook containing data analysis & visualizations:
 PRIMARY_notebook.ipynb
 ##### primary data set:
@@ -44,6 +47,7 @@ zawar_functions.py
 eric_data_collection.py
 ##### scripts used to clean data:
 eric_data_clean.py
+<<<<<<< HEAD
 ##### scripts used for analysis (most copied into primary notebook):
 eric_analysis.py
 
@@ -55,3 +59,7 @@ eric_analysis.py
 ##### and most profitable of non-English movies.
 ##### Sci-Fi and Action genres have the highest revenue and profits
 ##### and have been trending upward over the last 30 years.
+=======
+##### scripts used for analysis (most copied into primary notebook)
+eric_analysis.py
+>>>>>>> b24170968680ade4f3b92e508a95be780444a043

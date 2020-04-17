@@ -62,7 +62,7 @@ filt_rev = df['revenue'] < 10000
 df['revenue'] = np.where(filt_rev, np.nan, df['revenue'])
 
 # Drop remaining profit outliers
-df.drop([76758,15362], inplace=True)
+df.drop([76758, 15362, 457955, 10353, 2395], inplace=True)
 
 # Spell out languages
 language_dict = {

@@ -35,25 +35,20 @@ plt.ylabel('Med Rating (Out of 10)')
 plt.show()
 
 # Plot median profit per decade for top 5 languages
-for language in top_five_lang:
-    plots[language] = [top_five_lang[language]['90s_median_profit']/1000000,
-                       top_five_lang[language]['00s_median_profit']/1000000,
-                       top_five_lang[language]['10s_median_profit']/1000000]
-plots=pd.DataFrame(plots, index=['1990s', '2000s', '2010s'])
-plots.plot(figsize=(10,6))
-plt.title('Median Profit per Decade\nby Language')
+top_five_df[['90s_median_profit', '00s_median_profit', '10s_median_profit']].sort_values(
+    by='10s_median_profit',ascending=False).plot(kind='bar',figsize=(10,6))
+plt.title('Median Profit per Decade\nof Top Five Languages')
 plt.ylabel('Med Profit (Millions)')
+plt.legend(labels=['1990s', '2000s', '2010s'])
 plt.show()
 
 # Plot median profit margin per decade for top 5 languages
-for language in top_five_lang:
-    plots[language] = [top_five_lang[language]['90s_median_profit_margin'],
-                       top_five_lang[language]['00s_median_profit_margin'],
-                       top_five_lang[language]['10s_median_profit_margin']]
-plots=pd.DataFrame(plots, index=['1990s', '2000s', '2010s'])
-plots.plot(figsize=(10,6))
-plt.title('Median Profit Margin per\nDecade by Language')
+top_five_df[['90s_median_profit_margin', '00s_median_profit_margin', '10s_median_profit_margin']].sort_values(
+    by='10s_median_profit_margin',ascending=False).plot(kind='bar',figsize=(10,6))
+plt.title('Median Profit Margin per Decade\nfor Top Five Languages')
 plt.ylabel('Med Profit Margin')
+plt.legend(labels=['1990s', '2000s', '2010s'])
+plt.ylim(-30,90)
 plt.show()
 
 

@@ -44,5 +44,14 @@ zawar_functions.py
 eric_data_collection.py
 ##### scripts used to clean data:
 eric_data_clean.py
-##### scripts used for analysis (most copied into primary notebook)
+##### scripts used for analysis (most copied into primary notebook):
 eric_analysis.py
+
+
+
+### Conclusions:
+
+##### Chinese and Japanese movies are among the highest rated
+##### and most profitable of non-English movies.
+##### Sci-Fi and Action genres have the highest revenue and profits
+##### and have been trending upward over the last 30 years.
